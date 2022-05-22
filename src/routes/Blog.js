@@ -64,10 +64,11 @@ export default function LinearBuffer() {
                 //window.location.href = lista[txt];
               });
             });
-            html += `
-            <h4>${lista[txt]}</h4>
+            window.location.href = lista[txt];
+            /*html += `
+            <script>console.log(${lista[txt]});</script>
             `;
-            document.getElementById("Matchs").innerHTML = html;
+            document.getElementById("Matchs").innerHTML = html;*/
           });
         //window.location.href = cell.v;
       }
