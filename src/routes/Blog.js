@@ -63,7 +63,7 @@ export default function LinearBuffer() {
                 window.location.href = lista[txt];
               });
             });
-            console.log(lista[txt]);
+            console.log(url1);
           });
         //window.location.href = cell.v;
       }
