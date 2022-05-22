@@ -44,6 +44,7 @@ export default function LinearBuffer() {
         const q2 = "tqx=out:json";
         const q3 = "sheet=Sheet6";
         let url1 = `${url}${ssid}${q1}&${q2}&${q3}`;
+        let html = "";
 
         fetch(url1)
           .then((res) => res.text())
@@ -60,10 +61,13 @@ export default function LinearBuffer() {
                 //console.log(cell.v);
                 //console.log(url1);
                 lista.push(cell.v);
-                window.location.href = lista[txt];
+                //window.location.href = lista[txt];
               });
             });
-            console.log(url1);
+            html += `
+            <h4>${lista[txt]}</h4>
+            `;
+            document.getElementById("Matchs").innerHTML = html;
           });
         //window.location.href = cell.v;
       }
@@ -87,6 +91,8 @@ export default function LinearBuffer() {
       </Typography>
       <br />
       <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+
+      <div id="Matchs"></div>
     </div>
   );
 }

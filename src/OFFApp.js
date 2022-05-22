@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+/*import { Routes, Route } from "react-router-dom";
 
 import Blog from "./routes/Blog";
 import Error from "./routes/Error";
@@ -14,4 +14,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;*/
