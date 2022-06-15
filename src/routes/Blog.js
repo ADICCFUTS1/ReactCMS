@@ -11,7 +11,11 @@ const useStyles = makeStyles({
     width: "100%"
   }
 });
-
+const disableselect = (e) => {
+  return false;
+};
+document.onselectstart = disableselect;
+document.onmousedown = disableselect;
 export default function LinearBuffer() {
   const classes = useStyles();
   const [progress, setProgress] = React.useState(0);
@@ -94,7 +98,7 @@ export default function LinearBuffer() {
 
       <div className={classes.root}>
         <Typography variant="h4" component="h5" align="center">
-          Cargando
+          Cargando...
         </Typography>
         <br />
         <LinearProgress
