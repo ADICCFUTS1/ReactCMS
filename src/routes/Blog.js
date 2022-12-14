@@ -43,6 +43,10 @@ export default function LinearBuffer() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const txt = urlParams.get("txt");
+  let Frases = [
+    "Delay estimado: 20 segundos a 1 minuto.",
+    "Ante cualquier error, reiniciar la app."
+  ];
   /* /VARS SIMPLES*/
 
   const progressRef = React.useRef(() => {});
@@ -79,6 +83,13 @@ export default function LinearBuffer() {
             window.location.href = lista[txt];
           });
       }
+      if (progress < 50) {
+        document.getElementById("Frases").innerHTML =
+          "<h4>" + Frases[0] + "<h4>";
+      } else {
+        document.getElementById("Frases").innerHTML =
+          "<h4>" + Frases[1] + "<h4>";
+      }
     };
   });
 
@@ -106,8 +117,8 @@ export default function LinearBuffer() {
           value={progress}
           valueBuffer={buffer}
         />
-
-        <div id="Matchs"></div>
+        <p></p>
+        <div id="Frases" align="center"></div>
       </div>
     </ThemeProvider>
   );
