@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Typography from "@material-ui/core/Typography";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 const useStyles = makeStyles({
@@ -23,10 +23,10 @@ export default function LinearBuffer() {
   /** */
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [darkMode, setDarkMode] = React.useState(prefersDarkMode);
-  console.log(prefersDarkMode);
+  ///console.log(prefersDarkMode);
 
   const theme = React.useMemo(() =>
-    createMuiTheme({
+    createTheme({
       palette: {
         type: darkMode ? "dark" : "light"
       }
@@ -47,6 +47,7 @@ export default function LinearBuffer() {
     "Delay estimado: 20 segundos a 1 minuto.",
     "Ante cualquier error, reiniciar la app."
   ];
+  const [frase, setFrase] = React.useState(Frases[0]);
   /* /VARS SIMPLES*/
 
   const progressRef = React.useRef(() => {});
@@ -70,6 +71,7 @@ export default function LinearBuffer() {
         const q3 = "sheet=Sheet6";
         let url1 = `${url}${ssid}${q1}&${q2}`;
 
+        console.log(url1);
         fetch(url1)
           .then((res) => res.text())
           .then((data) => {
@@ -84,11 +86,9 @@ export default function LinearBuffer() {
           });
       }
       if (progress < 50) {
-        document.getElementById("Frases").innerHTML =
-          "<h4>" + Frases[0] + "<h4>";
+        setFrase(Frases[0]);
       } else {
-        document.getElementById("Frases").innerHTML =
-          "<h4>" + Frases[1] + "<h4>";
+        setFrase(Frases[1]);
       }
     };
   });
@@ -118,7 +118,7 @@ export default function LinearBuffer() {
           valueBuffer={buffer}
         />
         <p></p>
-        <div id="Frases" align="center"></div>
+        <h4 align="center">{frase}</h4>
       </div>
     </ThemeProvider>
   );
