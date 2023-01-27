@@ -42,7 +42,8 @@ export default function LinearBuffer() {
   /* VARS SIMPLES*/
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const txt = urlParams.get("txt");
+  const Op1 = urlParams.get("op1");
+  const Op2 = urlParams.get("op2");
   let Frases = [
     "Generando estadisticas.",
     "Ante cualquier error, reiniciar la app."
@@ -76,13 +77,17 @@ export default function LinearBuffer() {
           .then((res) => res.text())
           .then((data) => {
             const json = JSON.parse(data.substr(47).slice(0, -2));
-            let lista = [];
+            let colA = [];
+            let colB = [];
             json.table.rows.forEach((row) => {
-              row.c.forEach((cell) => {
-                lista.push(cell.v);
-              });
+              colA.push(row.c[0].v);
+              colB.push(row.c[1].v);
             });
-            window.location.href = lista[txt];
+            if (Op1) {
+              window.location.href = colA[Op1];
+            } else if (Op2) {
+              window.location.href = colB[Op2];
+            }
           });
       }
       if (progress < 50) {

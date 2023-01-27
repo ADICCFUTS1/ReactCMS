@@ -45,6 +45,7 @@ export default function LinearBuffer() {
   const txt = urlParams.get("txt");
   let Frases = [
     "Delay estimado: 20 segundos a 1 minuto.",
+    "Las opciones chinas, son estables, y las que menos delay tienen.",
     "Ante cualquier error, reiniciar la app."
   ];
   const [frase, setFrase] = React.useState(Frases[0]);
@@ -85,10 +86,12 @@ export default function LinearBuffer() {
             window.location.href = lista[txt];
           });
       }
-      if (progress < 50) {
+      if (progress < 33) {
         setFrase(Frases[0]);
-      } else {
+      } else if ((progress > 33) & (progress < 75)) {
         setFrase(Frases[1]);
+      } else {
+        setFrase(Frases[2]);
       }
     };
   });
